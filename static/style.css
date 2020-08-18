@@ -1,0 +1,127 @@
+body {
+    color: #efefef;
+    background-color: #000000;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    margin: 0
+}
+
+.app {
+    text-align: center;
+}
+
+.app-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    color: #FFFFFFDD;
+    background-color: #FFFFFF22;
+}
+
+.app-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.app-body button {
+    height: 2.5em;
+    min-width: 50px;
+    background-color: #0077FF55;
+    color: #FFFFFF;
+    border: 0;
+    border-radius: 0.5em;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.app-body button:hover {
+    background-color: #0077FF99;
+}
+
+.app-body button:active {
+    background-color: #0077FFEE;
+}
+
+.app-body input {
+    height: 1em;
+    min-width: 2em;
+    max-width: 11em;
+    background-color: #FFFFFF22;
+    color: #FFFFFF;
+    border: 0;
+    border-radius: 0.4em;
+    margin: 0.8em 0.5em;
+    padding: 0.5em;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    text-align: center;
+}
+
+.app-body input * {
+    height: 1em;
+}
+
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container .section-title {
+    margin-top: 0.2em;
+}
+
+.counter-container {
+    flex-direction: row;
+    margin: auto;
+    height: 10em;
+}
+
+.counter-component {
+    min-width: 6em;
+}
+
+.current-value {
+    font-size: 4em;
+    color: #00FF00;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+.settings-blocks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.boxed-section {
+    flex-direction: column;
+    width: 270px;
+    background-color: #FFFFFF22;
+    margin-top: 2em;
+    padding: 1em;
+    border-radius: 0.8em;
+}
+
+.labeled-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.labeled-input label {
+    font-size: 0.8em;
+    margin-right: 0.4em;
+}
+
+hr.div-line {
+    border-top: 1px solid #444444;
+}
