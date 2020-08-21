@@ -1,6 +1,8 @@
 use yew::prelude::*;
 use crate::elements::increment_button::{ IncrementButton, Direction };
 use crate::elements::labeled_input::{ LabeledInput };
+use crate::elements::labeled_checkbox::{ LabeledCheckbox };
+use crate::elements::empty::make_empty;
 
 pub struct Home {
     link: ComponentLink<Self>,
@@ -98,7 +100,6 @@ impl Component for Home {
     }
 
     fn view(&self) -> Html {
-        let empty = html! { <></> };
         let min_max = html! {
             <div class="app-container boxed-section">
                 <h4 class="section-title">{ "Limits" }</h4>
@@ -136,13 +137,13 @@ impl Component for Home {
                 <div class="app-body">
                     <div class="app-container counter-container">
                         <div class="counter-component">
-                            { if self.can_decrement() { decrement_button } else { empty.clone() } }
+                            { if self.can_decrement() { decrement_button } else { make_empty() } }
                         </div>
                         <div class="counter-component">
                             <h1 class="current-value">{ format!("{}", self.value ) }</h1>
                         </div>
                         <div class="counter-component">
-                            { if self.can_increment() { increment_button } else { empty.clone() } }
+                            { if self.can_increment() { increment_button } else { make_empty() } }
                         </div>
                     </div>
                     <div class="settings-blocks">
@@ -154,18 +155,24 @@ impl Component for Home {
                                 value=&self.interval
                                 on_input=self.link.callback(|e: InputData| Msg::SetInterval(e.value.parse().unwrap()))
                             />
-                            <div class="labeled-input">
-                                <input
-                                    class="checkbox"
-                                    id="limit-toggle"
-                                    type="checkbox" 
-                                    checked=self.limited
-                                    onclick=self.link.callback(|_| Msg::ToggleLimit)
-                                />
-                                <label for="limit-toggle">{ "Limit to range" }</label>
-                            </div>
+                            <LabeledCheckbox
+                                label="Limit to range"
+                                id="limit-toggle"
+                                checked=&self.limited
+                                on_click=self.link.callback(|_| Msg::ToggleLimit)
+                            />
+                            // <div class="labeled-input">
+                            //     <input
+                            //         class="checkbox"
+                            //         id="limit-toggle"
+                            //         type="checkbox" 
+                            //         checked=self.limited
+                            //         onclick=self.link.callback(|_| Msg::ToggleLimit)
+                            //     />
+                            //     <label for="limit-toggle">{ "Limit to range" }</label>
+                            // </div>
                         </div>
-                        { if self.limited { min_max } else { empty.clone() } }
+                        { if self.limited { min_max } else { make_empty() } }
                     </div>
                 </div>
             </div>
