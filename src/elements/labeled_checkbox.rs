@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-#[derive(Clone, Properties)]
+#[derive(Clone, Properties, PartialEq)]
 pub struct LabeledCheckboxProps {
     pub label: String,
     pub id: String,

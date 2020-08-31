@@ -1,6 +1,7 @@
 #![recursion_limit="512"]
 
 mod home;
+mod containers;
 mod elements;
 
 use wasm_bindgen::prelude::*;

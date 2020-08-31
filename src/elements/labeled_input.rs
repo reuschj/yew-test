@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-#[derive(Clone, Properties)]
+#[derive(Clone, Properties, PartialEq)]
 pub struct LabeledInputProps {
     pub label: String,
     pub id: String,
