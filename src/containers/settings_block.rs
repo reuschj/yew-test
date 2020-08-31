@@ -1,0 +1,105 @@
+use yew::prelude::*;
+use yew::html::{ ChildrenRenderer };
+use yew::virtual_dom::{ VChild, VComp, VNode };
+use crate::elements::labeled_input::{ LabeledInput, LabeledInputProps };
+use crate::elements::labeled_checkbox::{ LabeledCheckbox, LabeledCheckboxProps };
+
+// Variant enum ----------------------------------- /
+
+#[derive(Clone, PartialEq)]
+pub enum Variant {
+    Input(<LabeledInput as Component>::Properties),
+    Checkbox(<LabeledCheckbox as Component>::Properties),
+}
+
+impl From<LabeledInputProps> for Variant {
+    fn from(props: LabeledInputProps) -> Self {
+        Variant::Input(props)
+    }
+}
+
+impl From<LabeledCheckboxProps> for Variant {
+    fn from(props: LabeledCheckboxProps) -> Self {
+        Variant::Checkbox(props)
+    }
+}
+
+// Settings block item ----------------------------------- /
+
+#[derive(PartialEq, Clone)]
+pub struct SettingsBlockItem {
+    props: Variant,
+}
+
+impl<C> From<VChild<C>> for SettingsBlockItem where C: Component, C::Properties: Into<Variant> {
+    fn from(v_child: VChild<C>) -> Self {
+        SettingsBlockItem {
+            props: v_child.props.into(),
+        }
+    }
+}
+impl Into<VNode> for SettingsBlockItem {
+    fn into(self) -> VNode {
+        match self.props {
+            Variant::Input(props) => {
+                VComp::new::<LabeledInput>(props, NodeRef::default(), None).into()
+            },
+            Variant::Checkbox(props) => {
+                VComp::new::<LabeledCheckbox>(props, NodeRef::default(), None).into()
+            },
+        }
+    }
+}
+
+// Settings block (props) ----------------------------------- /
+
+#[derive(Clone, Properties)]
+pub struct SettingsBlockProps {
+    pub title: String,
+    pub children: ChildrenRenderer<SettingsBlockItem>,
+}
+
+// Settings block (component) ----------------------------------- /
+
+pub struct SettingsBlock(SettingsBlockProps);
+
+impl Component for SettingsBlock {
+    type Message = ();
+    type Properties = SettingsBlockProps;
+
+    fn create(props: Self::Properties, _link: ComponentLink<Self>) -> Self {
+        Self(props)
+    }
+
+    fn change(&mut self, props: Self::Properties) -> ShouldRender {
+        self.0 = props;
+        true
+    }
+
+    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+        false
+    }
+
+    fn view(&self) -> Html {
+        html! {
+            <div class="app-container boxed-section">
+                { self.make_title() }
+                { self.make_settings() }
+            </div>
+        }
+    }
+}
+
+impl SettingsBlock {
+    fn make_title(&self) -> Html {
+        html! { <h4 class="section-title">{ self.0.title.clone() }</h4> }
+    }
+
+    fn make_settings(&self) -> Html {
+        html! {
+            for self.0.children.iter().map(|child_component| {
+                child_component
+            })
+        }
+    }
+}
