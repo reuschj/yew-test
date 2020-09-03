@@ -14,7 +14,7 @@ $ cargo install wasm-pack
 You can also find more general instructions for `wasm-pack` [here](https://yew.rs/docs/en/getting-started/project-setup/using-wasm-pack/).
 
 ```
-$ wasm-pack build --target web --out-name wasm --out-dir ./static
+$ wasm-pack build --target web
 ```
 
 ## Bundle
