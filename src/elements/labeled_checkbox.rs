@@ -1,5 +1,8 @@
 use yew::prelude::*;
 
+// Labeled checkbox (props) ----------------------------------- /
+
+/// Props for the labeled checkbox.
 #[derive(Clone, Properties, PartialEq)]
 pub struct LabeledCheckboxProps {
     pub label: String,
@@ -8,6 +11,9 @@ pub struct LabeledCheckboxProps {
     pub on_click: Callback<()>,
 }
 
+// Labeled checkbox (component) ----------------------------------- /
+
+/// A checkbox with a UI label.
 pub struct LabeledCheckbox {
     link: ComponentLink<Self>,
     label: String,
@@ -16,6 +22,7 @@ pub struct LabeledCheckbox {
     on_click: Callback<()>,
 }
 
+/// Enum of possible messages to send to a checkbox.
 pub enum Msg {
     Changed,
 }

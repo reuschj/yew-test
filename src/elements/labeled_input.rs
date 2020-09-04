@@ -1,5 +1,8 @@
 use yew::prelude::*;
 
+// Labeled input (props) ----------------------------------- /
+
+/// Props for the labeled input.
 #[derive(Clone, Properties, PartialEq)]
 pub struct LabeledInputProps {
     pub label: String,
@@ -8,6 +11,9 @@ pub struct LabeledInputProps {
     pub on_input: Callback<InputData>,
 }
 
+// Labeled input (component) ----------------------------------- /
+
+/// A text input with a UI label.
 pub struct LabeledInput {
     link: ComponentLink<Self>,
     label: String,
@@ -16,6 +22,7 @@ pub struct LabeledInput {
     on_input: Callback<InputData>,
 }
 
+/// Enum of possible messages to send to an input box.
 pub enum Msg {
     Changed(InputData),
 }

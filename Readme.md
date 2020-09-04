@@ -18,7 +18,7 @@ $ wasm-pack build --target web
 ```
 
 ## Bundle
-To bundle:
+To bundle (optional):
 
 ```
 $ rollup ./main.js --format iife --file ./pkg/bundle.js
