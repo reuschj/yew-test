@@ -1,5 +1,9 @@
 use yew::prelude::*;
 
+// Direction enum ----------------------------------- /
+
+/// Enum of possible directions for an increment button to increment.
+/// All directions take a parameter for the magnitude of the increment.
 #[derive(Clone)]
 pub enum Direction {
     Up(i64),
@@ -7,11 +11,16 @@ pub enum Direction {
 }
 
 impl Default for Direction {
+
+    /// By default, increment up by 1.
     fn default() -> Self {
         Direction::Up(1)
     }
 }
 
+// Increment button (props) ----------------------------------- /
+
+/// Props for the increment button.
 #[derive(Clone, Properties)]
 pub struct IncrementButtonProps {
     #[prop_or_default]
@@ -19,6 +28,9 @@ pub struct IncrementButtonProps {
     pub on_click: Callback<()>,
 }
 
+// Increment button (component) ----------------------------------- /
+
+// A button and increment by a specified direction and magnitude on press.
 pub struct IncrementButton {
     link: ComponentLink<Self>,
     direction: Direction,
@@ -26,6 +38,8 @@ pub struct IncrementButton {
 }
 
 impl IncrementButton {
+
+    /// Gets the text label for the button.
     fn button_label(&self) -> String {
         match self.direction {
             Direction::Up(interval) => format!("+ {}", interval),
@@ -34,6 +48,7 @@ impl IncrementButton {
     }
 }
 
+/// Enum of possible messages to send to an increment button.
 pub enum Msg {
     Clicked,
 }
